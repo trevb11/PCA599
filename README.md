@@ -2,10 +2,12 @@
 
 INSTILLATION
 
+```{r}
 install.packages("PCA599")
 ##OR
 if(require("remotes"))install.packages("remotes")
 remotes::install_github("trevb11/PCA599")
+```
 
 USAGE
 
