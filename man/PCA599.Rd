@@ -15,5 +15,5 @@
 \item{error}{reconstruction error (sum of squared error}
 \item{center}{centerings used}
 
-
+\author{Jared Benajmin Silverstein}
 
