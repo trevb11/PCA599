@@ -1,1 +1,13 @@
-
+Package: PCA599
+Type: Package
+Title: Implementation of Principal Component Analysis
+Author: Jared Benjamin Silverstein
+Maintainer: Jared Benjamin Silverstein <jbs438@nau.edu>
+Description: Standard template library 
+ containers are used to implement a Principal Component reduction analysis.
+URL: https://github.com/trevb11/PCA599
+Imports: data.table, stats, base
+Suggests: 
+    ggplot2,
+    testthat
+RoxygenNote
