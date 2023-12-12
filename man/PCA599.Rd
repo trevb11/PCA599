@@ -1,20 +1,20 @@
-\name{PCA}
-\alias{PCA}
-\title{PCA, center data}
+\name{PCA599}
+\alias{PCA599}
+\title{PCA599, center data}
 \description{Calls code for \code{\line{PCA} function that computs principal compnents for an input feature matrix.}
-\usage{PCA(data.matrix, 
+\usage{PCA599(data.matrix, 
     K = maximum.components)}
 
   \item{data.matrix}{Matirx of numeric data.}
   \item{K}{Maximum number of principal components to compute}
 
 
-\value{List output from \code{\link{PCA}} which represents a principal component dimension reduction
+\value{List output from \code{\link{PCA599}} which represents a principal component dimension reduction
 model.}
 
 \author{Jared Benajmin Silverstein}
 
-PCA <- function(data.matrix, K){
+PCA599 <- function(data.matrix, K){
   
   #parse data as a numeric matrix
   if (!is.matrix(data.matrix) || !is.numeric(data.matrix)){
