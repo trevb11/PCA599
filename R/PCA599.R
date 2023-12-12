@@ -17,8 +17,8 @@ PCA599 <- function(data.matrix, K){
   pc.mat <- svd.result$u[, 1:K] %*% diag(svd.result$d[1:K])
 
   #mean mat + pca.fit$x %*% transpose of rotation matrix
-  reconstruction <- scaled.data + pc.mat %*% t(svd.result$v[, 1:K])
-  reconstruction.error <- as.numeric(mean((scaled.data - reconstruction)^2))
+  reconstruction <- center + pc.mat %*% t(svd.result$v[, 1:K])
+  reconstruction.error <- as.numeric(mean((data.matrix - reconstruction)^2))
   
   result <- list()
   result$pc <- pc.mat
