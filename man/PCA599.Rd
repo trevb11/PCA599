@@ -1,7 +1,7 @@
 \name{PCA599}
 \alias{PCA599}
-\title{PCA599, center data}
-\description{Calls code for \code{\line{PCA} function that computs principal compnents for an input feature matrix.}
+\title{Principal Compenent Analysis}
+\description{Calls code for \code{\line{PCA599} function that computs principal compnents for an input feature matrix.}
 \usage{PCA599(data.matrix, 
     K = maximum.components)}
 
