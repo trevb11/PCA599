@@ -1,6 +1,6 @@
 # PCA599
 
-INSTILLATION
+# INSTILLATION
 
 ```{r}
 install.packages("PCA599")
@@ -9,7 +9,7 @@ if(require("remotes"))install.packages("remotes")
 remotes::install_github("trevb11/PCA599")
 ```
 
-USAGE
+# USAGE
 
 The main function is PCA599 for which you must at least specify two arguments:
 
