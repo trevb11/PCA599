@@ -1,55 +1,50 @@
-\name{get_centered}
-\alias{get_centered}
+\name{PCA}
+\alias{PCA}
 \title{PCA, center data}
-\description{Calls \code{\link{binseg}} to compute a binary segmentation model for change in
-mean with constant variance, max normal likelihood = min square
-loss.}
-\usage{binseg_normal(data.vec, 
-    max.segments = sum(!is.validation.vec), 
-    is.validation.vec = rep(FALSE, 
-        length(data.vec)), 
-    position.vec = seq_along(data.vec))}
-\arguments{
-  \item{data.vec}{Vector of numeric data to segment.}
-  \item{max.segments}{Maximum number of segments to compute, default=number of FALSE
-entries in \code{is.validation.vec}.}
-  \item{is.validation.vec}{logical vector indicating which data are to be used in validation
-set, default=all FALSE (no validation set).}
-  \item{position.vec}{integer vector of positions at which data are measured,
-default=1:length(\code{data.vec}).}
-}
+\description{Calls code for \code{\line{PCA} function that computs principal compnents for an input feature matrix.}
+\usage{PCA(data.matrix, 
+    K = maximum.components)}
 
-\value{List output from \code{\link{binseg}} which represents a binary segmentation
+  \item{data.matrix}{Matirx of numeric data.}
+  \item{K}{Maximum number of principal components to compute}
+
+
+\value{List output from \code{\link{PCA}} which represents a principal component dimension reduction
 model.}
 
-\author{Trevor Benajmin Silverstein}
+\author{Jared Benajmin Silverstein}
 
+PCA <- function(data.matrix, K){
+  
+  #parse data as a numeric matrix
+  if (!is.matrix(data.matrix) || !is.numeric(data.matrix)){
+    stop("data.matrix must be a numeric matrix")
+  }
+  
+  NROWS <- nrow(data.matrix)
+  NCOLS <- ncol(data.matrix)
+  
+  #center the data
+  scaled.data <- scale(data.matrix, center = TRUE, scale = FALSE)
+  center <- (data.matrix - scaled.data)
+  
+  #calculate svd
+  svd.result <- svd(scaled.data)
+  pc.mat <- svd.result$u[, 1:K] %*% diag(svd.result$d[1:K])
 
-get_centered <- function(data.matrix) {
+  #mean mat + pca.fit$x %*% transpose of rotation matrix
+  reconstruction <- scaled.data + pc.mat %*% t(svd.result$v[, 1:K])
+  reconstruction.error <- as.numeric(mean((scaled.data - reconstruction)^2))
 
-  mean_centered_data <- scale(data, center = TRUE, scale = FALSE)
+    #return principal components, rotation matrix, mean squared error, and centering used
+  result <- list()
+  result$pc <- pc.mat
+  result$rotation <- svd.result$v
+  result$error <- reconstruction.error
+  result$center <- center
+  
+  return(result)
 
-  return(mean_centered_data)
 }
 
 
-  ggplot()+
-    theme_bw()+
-    theme(panel.spacing=grid::unit(0, "lines"))+
-    geom_vline(aes(
-      xintercept=start.pos),
-      color="green",
-      data=segs.dt[1<start])+
-    geom_segment(aes(
-      start.pos, mean,
-      xend=end.pos, yend=mean),
-      data=segs.dt,
-      color="green")+
-    xlab("Position/index")+
-    ylab("Data/mean value")+
-    geom_point(aes(
-      pos, data.vec),
-      data=data.frame(data.vec, pos=seq_along(data.vec)))
-}
-
-}
