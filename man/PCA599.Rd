@@ -1,17 +1,19 @@
 \name{PCA599}
 \alias{PCA599}
 \title{Principal Compenent Analysis}
-\description{Calls code for \code{\line{PCA599} function that computs principal compnents for an input feature matrix.}
+\description{Principal Compnent Analysis dimensionality reduction function that computes principal compnents for an input feature matrix.}
 \usage{PCA599(data.matrix, 
     K = maximum.components)}
 
-  \item{data.matrix}{Matirx of numeric data.}
-  \item{K}{Maximum number of principal components to compute}
+\arguments{
+  \item{data.matrix}{Matrix of numeric data on which to run PCA.}
+  \item{K}{Maximum number of principal components to compute.}
+}
+\value{List of classPCA599 with elements pc, rotation, error, and center.}
+\item{pc}{principal components}
+\item{rotation}{rotation matrix}
+\item{error}{reconstruction error (sum of squared error}
+\item{center}{centerings used}
 
-
-\value{List output from \code{\link{PCA599}} which represents a principal component dimension reduction
-model.}
-
-\author{Jared Benajmin Silverstein}
 
 
